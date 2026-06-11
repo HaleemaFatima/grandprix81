@@ -136,7 +136,6 @@ Then open [http://localhost:3000](http://localhost:3000) 🏁
 
 <div align="center">
 
-**Built by a beginner with zero prior coding experience 🏁**
 
 [![Live](https://img.shields.io/badge/Try%20It%20Live-E8002D?style=for-the-badge&logo=vercel&logoColor=white)](https://grandprix81.vercel.app)
 
