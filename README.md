@@ -1,161 +1,147 @@
-# GrandPrix81 🏎
+<div align="center">
 
-**Live Site:** [grandprix81.vercel.app](https://grandprix81.vercel.app)
+<img src="https://img.shields.io/badge/GRANDPRIX81-E8002D?style=for-the-badge&logoColor=white" height="40"/>
 
-An AI-powered Formula 1 race strategy simulator. Configure your circuit, tyres, weather, and strategy mode — the engine computes your optimal pit window, tyre sequence, and projected race time lap by lap.
+# 🏎 GrandPrix81
 
----
+**An AI-powered Formula 1 race strategy simulator**
 
-## What It Does
+[![Live Site](https://img.shields.io/badge/LIVE%20SITE-grandprix81.vercel.app-E8002D?style=for-the-badge&logo=vercel&logoColor=white)](https://grandprix81.vercel.app)
+[![Next.js](https://img.shields.io/badge/Next.js%2014-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Vercel](https://img.shields.io/badge/Deployed%20on%20Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 
-GrandPrix81 lets you think like an F1 strategy engineer. Select your race parameters and the rule-based engine returns:
+<br/>
 
-- Recommended tyre sequence (e.g. Soft → Medium → Hard)
-- Optimal pit stop laps
-- Estimated total race time
-- Risk level assessment (Low / Medium / High)
-- Lap-by-lap degradation chart with pit stop markers
-- Full strategy breakdown explaining every decision
+> *Pick your track, tyres, weather, and strategy mode.*
+> *The engine calculates your optimal pit window, tyre sequence, and projected race time — lap by lap.*
 
----
+<br/>
 
-## Features
-
-- **24 Circuits** — All current F1 venues with track-specific lap time multipliers
-- **5 Tyre Compounds** — Soft, Medium, Hard, Intermediate, Wet
-- **3 Strategy Modes** — Aggressive, Balanced, Conservative
-- **Weather Scenarios** — Dry, Mixed, Wet conditions affect compound choice and lap times
-- **Safety Car Risk** — Low / Medium / High probability shifts pit windows by up to 16 seconds
-- **Degradation Modelling** — Tyre cliff simulation where wear accelerates past a threshold lap
-- **Live Chart** — Recharts-powered visualisation of lap time progression across full race distance
+</div>
 
 ---
 
-## Built With
+## 🏁 What is GrandPrix81?
+
+GrandPrix81 lets you think like an F1 strategy engineer. Configure your race parameters and the rule-based engine instantly returns your optimal strategy — complete with a live lap time degradation chart, pit stop breakdown, and full risk analysis.
+
+Built from scratch with **zero prior coding experience** as a guided project.
+
+---
+
+## ⚡ Features
+
+| | Feature | Description |
+|---|---|---|
+| 🗺 | **24-Circuit Library** | All current F1 venues with track-specific lap time multipliers |
+| 🧠 | **Rule-Based Strategy Engine** | Cliff modelling, safety car windows, compound sequencing |
+| 📊 | **Live Degradation Chart** | Lap-by-lap tyre wear visualised with pit stop markers |
+| ☀ | **Weather Scenarios** | Dry, Mixed, Wet — affects compounds and lap times |
+| 🚨 | **Safety Car Risk** | SC probability shifts pit windows by up to 16 seconds |
+| 🎯 | **3 Strategy Modes** | Aggressive, Balanced, or Conservative |
+| 🏆 | **Risk Assessment** | Low / Medium / High rating for every strategy |
+
+---
+
+## 🛞 Tyre Degradation Model
+
+| Compound | Base Lap | Degradation / Lap | Cliff Lap |
+|----------|----------|-------------------|-----------|
+| 🔴 Soft | 88s | +0.18s | Lap 18 |
+| 🟡 Medium | 90s | +0.10s | Lap 28 |
+| ⚪ Hard | 92s | +0.06s | Lap 38 |
+| 🟢 Intermediate | 98s | +0.14s | Lap 22 |
+| 🔵 Wet | 105s | +0.09s | Lap 30 |
+
+> Past the cliff lap, degradation accelerates — just like in a real Grand Prix.
+
+---
+
+## 🧱 Tech Stack
 
 | Technology | Purpose |
 |------------|---------|
-| [Next.js 14](https://nextjs.org) | React framework, app router |
-| [Tailwind CSS](https://tailwindcss.com) | Styling and dark theme |
-| [Recharts](https://recharts.org) | Lap time degradation chart |
-| [Lucide React](https://lucide.dev) | Icons |
-| [Vercel](https://vercel.com) | Deployment |
+| ![Next.js](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=white) | React framework, App Router |
+| ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white) | Styling and dark F1 theme |
+| ![Recharts](https://img.shields.io/badge/Recharts-E8002D?logoColor=white) | Lap time degradation chart |
+| ![Lucide](https://img.shields.io/badge/Lucide%20React-000?logoColor=white) | Icons |
+| ![Vercel](https://img.shields.io/badge/Vercel-000?logo=vercel&logoColor=white) | Deployment |
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 grandprix81/
 ├── app/
-│   ├── layout.tsx                 ← Root layout, metadata, fonts
-│   ├── globals.css                ← Global styles, F1 dark theme
+│   ├── layout.tsx                 ← Root layout and metadata
+│   ├── globals.css                ← F1 dark theme and animations
 │   ├── page.tsx                   ← Homepage
 │   ├── simulator/
-│   │   └── page.tsx               ← Simulator page (form + results)
+│   │   └── page.tsx               ← Simulator page
 │   └── components/
-│       ├── Navbar.tsx             ← Fixed top navigation bar
+│       ├── Navbar.tsx             ← Top navigation
 │       ├── TrackSelect.tsx        ← Custom circuit dropdown
-│       ├── TyreBadge.tsx          ← Coloured tyre compound pill
-│       ├── LapTimeChart.tsx       ← Recharts degradation chart
-│       └── ResultCard.tsx         ← Strategy output card
+│       ├── TyreBadge.tsx          ← Tyre compound pill
+│       ├── LapTimeChart.tsx       ← Degradation chart
+│       └── ResultCard.tsx         ← Strategy result card
 ├── lib/
-│   └── strategyEngine.ts          ← Rule-based race strategy brain
+│   └── strategyEngine.ts          ← Race strategy brain
 ├── tailwind.config.ts             ← F1 colour palette
 └── package.json
 ```
 
 ---
 
-## How the Strategy Engine Works
-
-The engine lives in `lib/strategyEngine.ts` and models real F1 logic:
-
-**1. Tyre Sequencing**
-Compounds are chosen based on starting tyre, weather, strategy mode, and total lap count. Wet conditions override all dry logic. Aggressive mode favours Soft-heavy sequences; Conservative mode extends Hard stints.
-
-**2. Pit Windows**
-Total laps are divided evenly between stints. Aggressive mode pits 3 laps earlier; Conservative pits 3 laps later. High safety car risk shifts pit laps earlier to exploit yellow flag windows.
-
-**3. Degradation Model**
-Each compound has a base lap time, a degradation rate per lap, and a cliff lap where wear suddenly accelerates:
-
-| Compound | Base Time | Deg/Lap | Cliff Lap |
-|----------|-----------|---------|-----------|
-| Soft | 88s | +0.18s | Lap 18 |
-| Medium | 90s | +0.10s | Lap 28 |
-| Hard | 92s | +0.06s | Lap 38 |
-| Intermediate | 98s | +0.14s | Lap 22 |
-| Wet | 105s | +0.09s | Lap 30 |
-
-**4. Track Multipliers**
-All 24 circuits have a time multiplier based on real lap characteristics. Monaco (+8%) is the slowest; Monza (-9%) the fastest.
-
-**5. Safety Car Benefit**
-Pitting under a safety car saves up to 16 seconds in pit stop cost depending on SC risk level.
-
-**6. Risk Scoring**
-Combines tyre softness, number of Soft stints, weather uncertainty, SC probability, and strategy aggressiveness into a Low / Medium / High risk rating.
-
----
-
-## Running Locally
-
-**Prerequisites:** Node.js 18+
+## 🚀 Running Locally
 
 ```bash
-# Clone the repo
+# 1. Clone the repo
 git clone https://github.com/yourusername/grandprix81.git
 cd grandprix81
 
-# Install dependencies
+# 2. Install dependencies
 npm install
 
-# Start development server
+# 3. Start the dev server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Then open [http://localhost:3000](http://localhost:3000) 🏁
 
-```bash
-# Build for production
-npm run build
+---
 
-# Start production server
-npm start
+## 🎨 Colour Palette
+
+```
+#E8002D  ██  f1red    — Primary accent, buttons
+#000000  ██  f1dark   — Page background
+#0D0D0D  ██  f1panel  — Cards and panels
+#FFD700  ██  f1yellow — Medium tyre, highlights
+#00D2BE  ██  f1teal   — Pit stop markers
+#888888  ██  f1muted  — Subtext and labels
 ```
 
 ---
 
-## Colour Palette
+## ☁️ Deploy Your Own
 
-| Token | Hex | Usage |
-|-------|-----|-------|
-| `f1red` | `#E8002D` | Primary accent, buttons, highlights |
-| `f1dark` | `#000000` | Page background |
-| `f1panel` | `#0D0D0D` | Cards and panels |
-| `f1border` | `#1E1E1E` | Borders and dividers |
-| `f1muted` | `#888888` | Subtext and labels |
-| `f1yellow` | `#FFD700` | Medium tyre, stat accents |
-| `f1teal` | `#00D2BE` | Pit stop markers on chart |
-
----
-
-## Deploying to Vercel
-
-This project is deployed on Vercel. To deploy your own copy:
-
-1. Push the project to a GitHub repository
+1. Push this repo to GitHub
 2. Go to [vercel.com](https://vercel.com) and import the repo
-3. Vercel auto-detects Next.js — just click Deploy
-4. Your site will be live in under a minute
+3. Vercel auto-detects Next.js — click **Deploy**
+4. Live in under a minute
 
 ---
 
-## Disclaimer
+<div align="center">
 
-GrandPrix81 is a fan-made project for educational and entertainment purposes. It is not affiliated with, endorsed by, or connected to Formula 1, FOM, FIA, or any F1 team.
+**Built by a beginner with zero prior coding experience 🏁**
 
----
+[![Live](https://img.shields.io/badge/Try%20It%20Live-E8002D?style=for-the-badge&logo=vercel&logoColor=white)](https://grandprix81.vercel.app)
 
-*Built by a beginner with zero prior coding experience.* 🏁
+<br/>
+
+*GrandPrix81 is a fan-made project. Not affiliated with Formula 1, FOM, or FIA.*
+
+</div>
